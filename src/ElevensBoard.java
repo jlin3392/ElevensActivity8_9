@@ -72,8 +72,12 @@ public class ElevensBoard extends Board {
      */
     @Override
     public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-        return true;
+		List<Integer> cIndex = cardIndexes();
+		if (containsPairSum11(cIndex) || containsJQK(cIndex)) {
+		    return true;
+        } else {
+		    return false;
+        }
     }
 
     /**
@@ -85,8 +89,19 @@ public class ElevensBoard extends Board {
      *              contain an 11-pair; false otherwise.
      */
     private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-        return true;
+		for (int i = 0; i < selectedCards.size(); i++) {
+		    int card1 = selectedCards.get(i).intValue();
+
+		    for (int j = i + 1; j < selectedCards.size(); j++) {
+		        int card2 = selectedCards.get(j).intValue();
+
+		        if (cardAt(card1).pointValue() + cardAt(card2).pointValue() == 11) {
+		            return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
